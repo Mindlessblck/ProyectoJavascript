@@ -1,0 +1,42 @@
+<h2>Calculadora de Notas</h2>
+
+<div class="container">
+    <form (ngSubmit)="calcularPromedio()" #formNotas="ngForm" novalidate>
+
+        <div class="nota-row" *ngFor="let nota of notas; let i = index">
+            <div class="input-group">
+                <label for="valor{{i}}">{{ nombresNotas[i] }}</label>
+                <input type="number" id="valor{{i}}" [(ngModel)]="nota.valor" name="valor{{ i }}" min="0" max="20"
+                    required (input)="limitarValores(i)" [class.invalid]="nota.valor < 0 || nota.valor > 20"
+                    placeholder="Nota (0-20)" />
+            </div>
+
+            <div class="input-group">
+                <label for="porcentaje{{i}}">Porcentaje</label>
+                <input type="number" id="porcentaje{{i}}" [(ngModel)]="nota.porcentaje"
+                    name="porcentaje{{ i }}_porcentaje" min="0" max="100" required (input)="limitarValores(i)"
+                    [class.invalid]="nota.porcentaje < 0 || nota.porcentaje > 100" placeholder="%" />
+            </div>
+        </div>
+
+        <p><strong>Porcentaje total:</strong> {{ porcentajeTotal }}%</p>
+
+        <div *ngIf="!porcentajeValido" class="error-msg">
+            ⚠️ La suma de los porcentajes debe ser exactamente 100%.
+        </div>
+
+        <div>
+            <button type="submit" [disabled]="!formNotas.form.valid || !porcentajeValido">Calcular</button>
+            <button type="button" (click)="resetear()">Resetear</button>
+        </div>
+    </form>
+
+    <div *ngIf="estado" class="resultado">
+        <p><strong>Promedio:</strong> {{ resultado }}</p>
+        <p><strong>Estado:</strong>
+            <span [class.aprobado]="estado === 'Aprobado'" [class.desaprobado]="estado === 'Desaprobado'">
+                {{ estado }}
+            </span>
+        </p>
+    </div>
+</div>
