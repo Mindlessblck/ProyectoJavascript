@@ -1,0 +1,7 @@
+.resultado {
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 8px;
+  background: #eef2ff;
+  min-width: 200px;
+}

@@ -1,0 +1,20 @@
+<h2>{{ curso }}</h2>
+<br>
+<div class="container">
+    
+
+  <form (ngSubmit)="calcularPromedio()">
+    <div class="fila" *ngFor="let nota of notas">
+      <label>{{ nota.nombre }}</label>
+      <input type="number" [(ngModel)]="nota.valor" name="nota-{{nota.nombre}}" placeholder="Nota" required />
+
+      <label>Porcentaje</label>
+      <input type="number" [(ngModel)]="nota.porcentaje" name="porcentaje-{{nota.nombre}}" placeholder="%" required />
+    </div>
+
+    <button type="submit">Calcular</button>
+  </form>
+
+  <!-- Resultado en cuadro a la derecha -->
+  <app-resultado [promedio]="promedio" [estado]="estado"></app-resultado>
+</div>

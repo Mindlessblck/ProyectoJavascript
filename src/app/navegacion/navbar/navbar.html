@@ -1,0 +1,24 @@
+<style>
+    nav{
+        display: flex;
+        justify-content: space-around;
+        background-color: #98a9e6;
+        color: white;
+        padding: 10px;
+    }
+
+    nav a{
+        color: white;
+        text-decoration: underline;
+    }
+
+    nav a.active{
+        color: red;
+    }
+</style>
+
+<nav>
+    <a routerLink="/cursos/javascript" routerLinkActive="active">JavaScript</a>
+    <a routerLink="/hoja-de-estilo" routerLinkActive="active">Hoja de estilo en cascada</a>
+    
+</nav>
