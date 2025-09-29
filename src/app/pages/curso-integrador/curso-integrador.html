@@ -1,0 +1,32 @@
+<div class="form-container">
+  <h2>Promedio Ponderado</h2>
+
+  <form [formGroup]="notaForm" (ngSubmit)="calcularPromedio()">
+    <table>
+      <tr>
+        <th>Nota</th>
+        <th>Valor (0-20)</th>
+        <th>Peso (%)</th>
+      </tr>
+      <tr *ngFor="let item of notas">
+        <td>{{ item.nombre }}</td>
+        <td>
+          <input type="number" [formControlName]="item.nota" (input)="limitarNota(item.nota)">
+        </td>
+        <td>
+          <input type="number" [formControlName]="item.peso" min="0" max="100">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="text-align:right;"><strong>Total Porcentaje:</strong></td>
+        <td [style.color]="totalPorcentaje > 100 ? 'red' : 'black'">{{ totalPorcentaje }}%</td>
+      </tr>
+    </table>
+
+    <button type="submit" [disabled]="notaForm.invalid || totalPorcentaje !== 100">Calcular Promedio</button>
+  </form>
+
+  <div *ngIf="resultado !== null" class="resultado">
+    <p>Promedio Ponderado: <strong>{{ resultado | number:'1.2-2' }}</strong></p>
+  </div>
+</div>

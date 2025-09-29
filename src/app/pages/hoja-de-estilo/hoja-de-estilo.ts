@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Resultado } from "../../resultado/resultado/resultado";
+import { Resultado } from "../../component/resultado/resultado";
 
 @Component({
   selector: 'app-hoja-de-estilo',
