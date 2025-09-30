@@ -1,0 +1,18 @@
+<form [formGroup]="promedioForm" (ngSubmit)="calcularPromedio()">
+  <div *ngFor="let nota of ['pc1','pc2','pc3','ex']">
+    <label>{{ nota.toUpperCase() }}:</label>
+    <input type="number" formControlName="{{ nota }}" min="0" max="20" />
+    <label>Peso {{ nota.toUpperCase() }} (%):</label>
+    <input type="number" formControlName="peso{{ nota | titlecase }}" min="0" max="100" />
+  </div>
+
+  <p>Total porcentaje: {{ porcentajeTotal }}%</p>
+  <button type="submit">Calcular Promedio</button>
+</form>
+
+<!-- Componente Resultado -->
+<app-resultado 
+  *ngIf="mostrarResultado" 
+  [promedio]="promedioFinal" 
+  [estado]="estado">
+</app-resultado>
